@@ -79,6 +79,50 @@ if (protectionMatrix) {
   showProtectionState("after");
 }
 
+const populationChart = document.querySelector(".trend-chart");
+
+if (populationChart) {
+  const buttons = [...document.querySelectorAll("[data-population-state]")];
+  const insight = document.querySelector(".chart-insight");
+  const insightValue = document.getElementById("trend-insight-value");
+  const insightText = document.getElementById("trend-insight-text");
+  const description = document.getElementById("trend-svg-desc");
+
+  const states = {
+    observed: {
+      value: "+263%",
+      text: "increase from the 2013 estimate of 38 to the 2024 estimate of 138",
+      description: "The observed estimate declines from approximately 250 caribou in the 1990s to 38 in 2013, then increases to 101 in 2021 and 138 in 2024.",
+    },
+    counterfactual: {
+      value: "≈11",
+      text: "illustrative 2024 population if the pre-recovery decline of approximately 11% per year had continued",
+      description: "A dashed counterfactual line continues the approximately 11 percent annual pre-recovery decline from 38 caribou in 2013 to approximately 11 in 2024. This is an illustrative projection, not an observed count.",
+    },
+  };
+
+  function showPopulationState(key) {
+    const selected = states[key];
+    const projected = key === "counterfactual";
+    populationChart.classList.toggle("counterfactual-mode", projected);
+    insight?.classList.toggle("projected", projected);
+    if (insightValue) insightValue.textContent = selected.value;
+    if (insightText) insightText.textContent = selected.text;
+    if (description) description.textContent = selected.description;
+    buttons.forEach((button) => {
+      const active = button.dataset.populationState === key;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => showPopulationState(button.dataset.populationState));
+  });
+
+  showPopulationState("observed");
+}
+
 if ("IntersectionObserver" in window) {
   const sectionObserver = new IntersectionObserver(
     (entries) => {

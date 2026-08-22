@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=5">
+  <link rel="stylesheet" href="./styles.css?v=6">
   <title>Beyond Preventing Extinction | Klinse-Za Caribou</title>
 </head>
 <body>
@@ -227,18 +227,25 @@
         <figure class="trend-figure" aria-labelledby="trend-title trend-caption">
           <div class="trend-header">
             <div>
-              <span class="figure-number">Figure 1</span>
+              <span class="figure-number">Figure 1 · Interactive</span>
               <h3 id="trend-title">Estimated Klinse-Za herd size</h3>
             </div>
-            <div class="trend-key" aria-label="Chart legend">
-              <span><i class="decline-key"></i>Decline</span>
-              <span><i class="recovery-key"></i>Recovery</span>
+            <div class="trend-tools">
+              <div class="trend-controls" role="group" aria-label="Choose the population scenario">
+                <button type="button" class="compare-button active" data-population-state="observed" aria-pressed="true">Observed recovery</button>
+                <button type="button" class="compare-button" data-population-state="counterfactual" aria-pressed="false">Without recovery actions</button>
+              </div>
+              <div class="trend-key" aria-label="Chart legend">
+                <span><i class="decline-key"></i>Observed decline</span>
+                <span><i class="recovery-key"></i>Observed recovery</span>
+                <span><i class="counterfactual-key"></i>Projection</span>
+              </div>
             </div>
           </div>
 
           <svg class="trend-chart" viewBox="0 0 1000 500" role="img" aria-labelledby="trend-svg-title trend-svg-desc">
             <title id="trend-svg-title">Estimated Klinse-Za caribou population from the 1990s to 2024</title>
-            <desc id="trend-svg-desc">The estimated herd declines from approximately 250 in the 1990s to 38 in 2013, then increases to 101 in 2021 and 138 in 2024.</desc>
+            <desc id="trend-svg-desc">The observed estimate declines from approximately 250 caribou in the 1990s to 38 in 2013, then increases to 101 in 2021 and 138 in 2024.</desc>
             <defs>
               <linearGradient id="declineFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d77952" stop-opacity=".38"/><stop offset="1" stop-color="#d77952" stop-opacity="0"/></linearGradient>
               <linearGradient id="recoveryFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fb99b" stop-opacity=".42"/><stop offset="1" stop-color="#8fb99b" stop-opacity="0"/></linearGradient>
@@ -251,19 +258,22 @@
             <path class="area recovery-area" d="M430 367 L695 297 L885 255 L885 410 L430 410 Z"/>
             <path class="trend-line decline-line" d="M135 130 L430 367"/>
             <path class="trend-line recovery-line" d="M430 367 L695 297 L885 255"/>
+            <path class="trend-line counterfactual-line" d="M430 367 L513 376 L596 383 L679 389 L762 393 L844 397 L885 398"/>
             <line class="intervention-line" x1="430" y1="72" x2="430" y2="410"/>
             <text class="intervention-label" x="446" y="96">Nation-led recovery begins</text>
+            <text class="projection-label" x="650" y="369">Illustrative continuation of the pre-recovery decline</text>
             <g class="data-point decline-point" transform="translate(135 130)"><circle r="10"/><text x="0" y="-24">≈250</text><text class="year" x="0" y="44">1990s</text></g>
             <g class="data-point crisis-point" transform="translate(430 367)"><circle r="12"/><text x="0" y="-25">38</text><text class="year" x="0" y="48">2013</text></g>
             <g class="data-point recovery-point" transform="translate(695 297)"><circle r="10"/><text x="0" y="-24">101</text><text class="year" x="0" y="44">2021</text></g>
             <g class="data-point latest-point" transform="translate(885 255)"><circle r="12"/><text x="0" y="-26">138</text><text class="year" x="0" y="46">2024</text></g>
+            <g class="data-point counterfactual-point" transform="translate(885 398)"><circle r="12"/><text x="0" y="-25">≈11</text><text class="year" x="0" y="46">2024</text></g>
           </svg>
 
           <div class="chart-insight">
-            <strong>+263%</strong>
-            <p>increase from the 2013 estimate of 38 to the 2024 estimate of 138</p>
+            <strong id="trend-insight-value">+263%</strong>
+            <p id="trend-insight-text">increase from the 2013 estimate of 38 to the 2024 estimate of 138</p>
           </div>
-          <figcaption id="trend-caption">Sources: Lamb et al. (2022) for the approximate 1990s, 2013, and 2021 estimates; Government of British Columbia (2024) for the 2024 estimate. The sources use estimates rather than a complete annual census, so the line shows direction and scale, not year-by-year precision.</figcaption>
+          <figcaption id="trend-caption">Sources: Lamb et al. (2022) for the approximate 1990s, 2013, and 2021 estimates and the reported pre-recovery decline of approximately 11% per year; Government of British Columbia (2024) for the 2024 estimate. The dashed counterfactual extends that earlier decline from 38 in 2013 to approximately 11 in 2024. It is an illustrative projection, not an observed count. Lamb et al. concluded that without action, functional extirpation was expected within the decade.</figcaption>
         </figure>
 
         <div class="recovery-reading">
@@ -523,6 +533,6 @@
     </div>
   </footer>
 
-  <script src="./script.js?v=5"></script>
+  <script src="./script.js?v=6"></script>
 </body>
 </html>

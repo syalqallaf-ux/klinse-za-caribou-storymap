@@ -900,6 +900,20 @@ a {
   font-weight: 400;
 }
 
+.trend-tools {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trend-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .trend-key {
   display: flex;
   gap: 17px;
@@ -928,6 +942,10 @@ a {
 
 .recovery-key {
   background: var(--forest-3);
+}
+
+.counterfactual-key {
+  background: repeating-linear-gradient(90deg, var(--rust) 0 5px, transparent 5px 9px);
 }
 
 .trend-chart {
@@ -972,6 +990,13 @@ a {
   stroke: var(--forest-3);
 }
 
+.counterfactual-line {
+  opacity: 0;
+  stroke: var(--rust);
+  stroke-width: 5;
+  stroke-dasharray: 10 10;
+}
+
 .intervention-line {
   stroke: var(--gold);
   stroke-width: 2;
@@ -987,6 +1012,16 @@ a {
   letter-spacing: .05em;
 }
 
+.projection-label {
+  opacity: 0;
+  fill: var(--rust);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
 .data-point circle {
   fill: var(--paper);
   stroke-width: 5;
@@ -1000,6 +1035,44 @@ a {
 .recovery-point circle,
 .latest-point circle {
   stroke: var(--forest-3);
+}
+
+.counterfactual-point {
+  opacity: 0;
+}
+
+.counterfactual-point circle {
+  stroke: var(--rust);
+}
+
+.recovery-area,
+.recovery-line,
+.recovery-point,
+.latest-point,
+.intervention-line,
+.intervention-label,
+.counterfactual-line,
+.counterfactual-point,
+.projection-label {
+  transition: opacity .3s ease;
+}
+
+.trend-chart.counterfactual-mode .recovery-area,
+.trend-chart.counterfactual-mode .recovery-line,
+.trend-chart.counterfactual-mode .recovery-point,
+.trend-chart.counterfactual-mode .latest-point {
+  opacity: .12;
+}
+
+.trend-chart.counterfactual-mode .intervention-line,
+.trend-chart.counterfactual-mode .intervention-label {
+  opacity: 0;
+}
+
+.trend-chart.counterfactual-mode .counterfactual-line,
+.trend-chart.counterfactual-mode .counterfactual-point,
+.trend-chart.counterfactual-mode .projection-label {
+  opacity: 1;
 }
 
 .data-point text {
@@ -1042,6 +1115,10 @@ a {
   color: #d4e3da;
   font-size: 9px;
   line-height: 1.5;
+}
+
+.chart-insight.projected {
+  background: #7f3d2b;
 }
 
 .trend-figure figcaption {
@@ -2095,6 +2172,19 @@ footer strong {
     grid-template-rows: 380px auto;
   }
 
+  .trend-header {
+    flex-direction: column;
+  }
+
+  .trend-tools {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .trend-controls {
+    justify-content: flex-start;
+  }
+
   .test-grid {
     grid-template-columns: 1fr;
   }
@@ -2329,6 +2419,21 @@ footer strong {
     font-size: 28px;
   }
 
+  .trend-tools {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .trend-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trend-key {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
+
   .chart-insight {
     position: static;
     width: 100%;
@@ -2340,6 +2445,7 @@ footer strong {
   }
 
   .intervention-label,
+  .projection-label,
   .grid-lines text {
     display: none;
   }

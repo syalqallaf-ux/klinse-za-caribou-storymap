@@ -1279,96 +1279,200 @@ a {
   background: var(--paper);
 }
 
-.waffle-comparison {
-  display: grid;
-  grid-template-columns: 1fr 130px 1fr;
-  align-items: center;
-  gap: 28px;
-}
-
-.waffle-comparison figure {
+.before-after-figure {
   margin: 0;
-  padding: 29px;
   border: 1px solid var(--line);
-  border-radius: 25px;
-  background: var(--cream);
+  border-radius: 28px;
+  background: #fbf8f1;
+  box-shadow: 0 18px 65px rgba(13, 43, 29, .1);
+  overflow: hidden;
 }
 
-.waffle-label {
+.before-after-head {
   display: flex;
-  align-items: end;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 22px;
+  gap: 28px;
+  padding: 31px 34px 25px;
+  border-bottom: 1px solid var(--line);
 }
 
-.waffle-label span {
+.before-after-head .figure-number {
+  display: block;
+}
+
+.before-after-head h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.compare-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.compare-button {
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--sans);
+  text-transform: uppercase;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.compare-button:hover,
+.compare-button:focus-visible {
+  border-color: var(--forest-3);
+  color: var(--forest-3);
+}
+
+.compare-button.active,
+.compare-button[aria-pressed="true"] {
+  border-color: var(--forest-2);
+  background: var(--forest-2);
+  color: #fff;
+}
+
+.before-after-body {
+  display: grid;
+  grid-template-columns: minmax(300px, .8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 56px;
+  padding: 38px 42px;
+}
+
+.protection-matrix {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 6px;
+  width: min(100%, 390px);
+  aspect-ratio: 1;
+}
+
+.protection-matrix span {
+  border-radius: 4px;
+  background: #dddeda;
+  transform: scale(.92);
+  transition: background .3s ease, transform .3s ease;
+}
+
+.protection-matrix span.filled {
+  background: var(--forest-3);
+  transform: scale(1);
+}
+
+.protection-matrix.before span.filled {
+  background: var(--rust);
+}
+
+.matrix-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 15px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.matrix-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.matrix-legend i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+}
+
+.legend-protected {
+  background: var(--forest-3);
+}
+
+.legend-unprotected {
+  background: #dddeda;
+}
+
+.protection-readout > span {
+  display: block;
   color: var(--muted);
   text-transform: uppercase;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .15em;
 }
 
-.waffle-label strong {
-  color: var(--rust);
-  font-family: var(--serif);
-  font-size: 43px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.waffle.after + figcaption,
-.waffle.after ~ figcaption {
+.protection-readout > strong {
+  display: block;
+  margin-top: 15px;
   color: var(--forest-3);
+  font-family: var(--serif);
+  font-size: clamp(68px, 9vw, 112px);
+  font-weight: 400;
+  line-height: .88;
+  letter-spacing: -.06em;
 }
 
-.waffle {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 5px;
-  aspect-ratio: 1.35;
+.protection-readout.before > strong {
+  color: var(--rust);
 }
 
-.waffle span {
-  border-radius: 3px;
-  background: #d8d9d4;
+.protection-readout > p {
+  max-width: 480px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
 }
 
-.waffle span.filled {
-  background: var(--rust);
+.change-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 27px;
+  padding: 12px 17px;
+  border-radius: 15px;
+  background: var(--ice);
 }
 
-.waffle.after span.filled {
-  background: var(--forest-3);
+.change-badge b {
+  color: var(--forest-3);
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
 }
 
-.waffle-comparison figcaption {
-  margin-top: 16px;
+.change-badge span {
+  max-width: 105px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 7px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .1em;
+}
+
+.before-after-figure figcaption {
+  padding: 20px 34px 24px;
+  border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 10px;
-  line-height: 1.5;
-}
-
-.protection-shift {
-  color: var(--rust);
-  text-align: center;
-}
-
-.protection-shift span {
-  display: block;
-  text-transform: uppercase;
-  font-size: 8px;
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: .13em;
-}
-
-.protection-shift b {
-  display: block;
-  margin-top: 8px;
-  font-size: 35px;
-  font-weight: 400;
+  line-height: 1.65;
 }
 
 .scale-stats {
@@ -2036,20 +2140,8 @@ footer strong {
     grid-column: 1 / -1;
   }
 
-  .waffle-comparison {
-    grid-template-columns: 1fr;
-  }
-
-  .protection-shift {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-  }
-
-  .protection-shift b {
-    margin: 0;
-    transform: rotate(90deg);
+  .before-after-body {
+    gap: 34px;
   }
 
   .knowledge-visual {
@@ -2269,8 +2361,38 @@ footer strong {
     padding: 29px 24px;
   }
 
-  .waffle-comparison figure {
-    padding: 22px;
+  .before-after-head {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 25px 22px 21px;
+  }
+
+  .before-after-head h3 {
+    font-size: 27px;
+  }
+
+  .compare-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .compare-button {
+    white-space: normal;
+  }
+
+  .before-after-body {
+    grid-template-columns: 1fr;
+    gap: 31px;
+    padding: 27px 22px;
+  }
+
+  .protection-matrix {
+    width: min(100%, 360px);
+    margin-inline: auto;
+  }
+
+  .before-after-figure figcaption {
+    padding: 18px 22px 22px;
   }
 
   .scale-stats {

@@ -13,17 +13,71 @@ function updateProgress() {
   if (progress) progress.style.width = `${Math.min(100, Math.max(0, amount))}%`;
 }
 
-document.querySelectorAll(".waffle").forEach((waffle) => {
-  const filled = Number(waffle.dataset.fill || 0);
+const protectionMatrix = document.getElementById("protection-matrix");
+
+if (protectionMatrix) {
+  const cells = [];
   const fragment = document.createDocumentFragment();
+  const percent = document.getElementById("protection-percent");
+  const stage = document.getElementById("protection-stage");
+  const description = document.getElementById("protection-description");
+  const readout = document.querySelector(".protection-readout");
+  const protectedLegend = document.querySelector(".legend-protected");
+  const buttons = [...document.querySelectorAll("[data-protection-state]")];
+
+  const states = {
+    before: {
+      fill: 2,
+      percent: "1.8%",
+      stage: "Before the 2020 agreement",
+      description: "Only a small fraction of the Klinse-Za range was protected.",
+      aria: "Approximately 1.8 percent of the Klinse-Za range was protected before the agreement.",
+    },
+    after: {
+      fill: 85,
+      percent: ">85%",
+      stage: "After the 2020 agreement",
+      description: "Protection measures cover most of the Klinse-Za range.",
+      aria: "More than 85 percent of the Klinse-Za range is covered by protection measures after the agreement.",
+    },
+  };
+
   for (let index = 0; index < 100; index += 1) {
     const cell = document.createElement("span");
-    if (index < filled) cell.className = "filled";
     cell.setAttribute("aria-hidden", "true");
+    cells.push(cell);
     fragment.appendChild(cell);
   }
-  waffle.appendChild(fragment);
-});
+  protectionMatrix.appendChild(fragment);
+
+  function showProtectionState(key) {
+    const selected = states[key];
+    cells.forEach((cell, index) => {
+      cell.classList.toggle("filled", index < selected.fill);
+    });
+    protectionMatrix.classList.toggle("before", key === "before");
+    protectionMatrix.classList.toggle("after", key === "after");
+    protectionMatrix.setAttribute("aria-label", selected.aria);
+    readout?.classList.toggle("before", key === "before");
+    if (protectedLegend) {
+      protectedLegend.style.background = key === "before" ? "var(--rust)" : "var(--forest-3)";
+    }
+    if (percent) percent.textContent = selected.percent;
+    if (stage) stage.textContent = selected.stage;
+    if (description) description.textContent = selected.description;
+    buttons.forEach((button) => {
+      const active = button.dataset.protectionState === key;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => showProtectionState(button.dataset.protectionState));
+  });
+
+  showProtectionState("after");
+}
 
 if ("IntersectionObserver" in window) {
   const sectionObserver = new IntersectionObserver(

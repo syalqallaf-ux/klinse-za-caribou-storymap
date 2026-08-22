@@ -1,18 +1,13 @@
-# Beyond Preventing Extinction: Klinse-Za Caribou StoryMap
+# Beyond Preventing Extinction
 
-This folder is a complete static website prepared for GitHub Pages. No build system,
-package installation, workflow, or API key is required.
+An academic visual StoryMap about Indigenous-led recovery of the Klinse-Za southern mountain caribou.
 
-## Publish on GitHub Pages
+Prepared by Salman Alqallaf for Dr. Kayla Murphy in BIOL 4003 / INDG 4003, Indigenous Perspectives in Conservation Biology, at Dalhousie University.
 
-1. Create a public repository named `klinse-za-caribou-storymap` under `syalqallaf-ux`.
-2. Upload **the contents of this folder** so that `index.html` is at the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Select **main**, choose **/(root)**, and save.
-
-The expected public address is:
+## Live site
 
 https://syalqallaf-ux.github.io/klinse-za-caribou-storymap/
 
-Repository: https://github.com/syalqallaf-ux/klinse-za-caribou-storymap
+## Technical notes
+
+This is a static GitHub Pages website. It requires no build step or API key. The site includes responsive layouts, accessible alternative text, reduced-motion support, custom inline data visualizations, and an OpenStreetMap locator.

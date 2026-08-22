@@ -1770,7 +1770,7 @@ footer strong {
   color: #c4cec8;
 }
 
-@media (max-width: 1340px) {
+@media (max-width: 1500px) {
   .story-rail {
     display: none;
   }
